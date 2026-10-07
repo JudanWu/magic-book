@@ -91,7 +91,7 @@ function draw(id,n,state){
    status=`逆时针旋转 ${n}°；90° 相当于乘 i，180° 相当于乘 −1。`;note='图中连续角度相当于乘 cos θ + i sin θ；并非所有角度都只是乘 i。';break;
  }
  case 11:{
-   const a=n,b=Number(state.height??.55),r=treasure(a,b),sc=65,cx=360,cy=165,P=([x,y])=>[cx+sc*x,cy-sc*y];
+   const a=n,b=Number(state.height??.55),r=treasure(a,b),sc=Math.min(65,118/Math.max(1.4,Math.abs(a),Math.abs(b),...r.first.map(Math.abs),...r.second.map(Math.abs))),cx=360,cy=165,P=([x,y])=>[cx+sc*x,cy-sc*y];
    svg=planeGrid(cx,cy,sc)+line(...P([a,b]),...P([-1,0]),GREEN)+line(...P([-1,0]),...P(r.first),GREEN)+line(...P([a,b]),...P([1,0]),ACCENT)+line(...P([1,0]),...P(r.second),ACCENT)+line(...P(r.first),...P(r.second),FAINT,'5 5');
    for(const [p,label,col] of [[[a,b],'绞架 Γ',INK],[[-1,0],'橡树 −1',GREEN],[[1,0],'松树 +1',ACCENT],[r.first,'木桩一',GREEN],[r.second,'木桩二',ACCENT],[[0,1],'宝藏 +i',INK]]){svg+=circle(...P(p),6,col)+text(P(p)[0],P(p)[1]-13,label,13,col)}
    status=`绞架 Γ = ${a.toFixed(2)} + ${b.toFixed(2)}i；两木桩的中点恒为 (0, 1)。`;note='拖动横、纵坐标，改变绞架假设位置；两条转弯路线随之改变，宝藏不动。';break;
@@ -101,7 +101,9 @@ function draw(id,n,state){
    for(const [p,label] of [[[2.7,0,0],'x'],[[0,2.7,0],'y'],[[0,0,2.7],'z']])svg+=line(...O.slice(0,2),...P(p).slice(0,2))+text(P(p)[0],P(p)[1],label,16);
    for(const [a,b] of [[[0,0,0],[x,0,0]],[[x,0,0],[x,y,0]],[[x,y,0],[x,y,z]],[[0,0,0],[x,y,z]]])svg+=line(...P(a).slice(0,2),...P(b).slice(0,2),ACCENT,'4 4');
    const q=P([x,y,z]),r=Math.hypot(x,y,z),rho=Math.hypot(x,y);svg+=circle(q[0],q[1],7)+text(q[0]+35,q[1]-12,'位置 P',14);
-   status=`直角坐标 (${x.toFixed(2)}, ${y.toFixed(2)}, ${z.toFixed(2)})；球坐标 r=${r.toFixed(2)}，θ=${(Math.atan2(y,x)*180/Math.PI).toFixed(1)}°，φ=${(Math.atan2(rho,z)*180/Math.PI).toFixed(1)}°。`;note='θ 是 xy 平面的方位角，φ 是从正 z 轴量起的极角。';break;
+   const focalA=Math.hypot(x+1,y,z),focalB=Math.hypot(x-1,y,z),azimuth=Math.hypot(y,z)<1e-8?'未定':(Math.atan2(z,y)*180/Math.PI).toFixed(1)+'°';
+   for(const [p,label] of [[[-1,0,0],'A'],[[1,0,0],'B']]){const f=P(p);svg+=circle(f[0],f[1],4,GREEN)+text(f[0]-10,f[1]+17,label,12,GREEN)+line(f[0],f[1],q[0],q[1],GREEN,'2 5')}
+   status=`直角坐标 (${x.toFixed(2)}, ${y.toFixed(2)}, ${z.toFixed(2)})；球坐标 r=${r.toFixed(2)}，θ=${rho<1e-8?'未定':(Math.atan2(y,x)*180/Math.PI).toFixed(1)+'°'}，φ=${r<1e-8?'未定':(Math.atan2(rho,z)*180/Math.PI).toFixed(1)+'°'}；双焦点表示：到 A、B 的距离 ${focalA.toFixed(2)}、${focalB.toFixed(2)}，绕 AB 的角度 ${azimuth}。`;note='θ 是 xy 方位角，φ 从正 z 轴量起。A、B 为固定焦点；两距离与绕 AB 的角度提供另一组三项数据。轴上位置的部分角度不唯一。';break;
  }
  case 13:{const m=cubeSphere(n/100);svg=meshSvg(m,state.view??.5,145);status=countText(m);note='同一张分割网格连续变形：不切开、不粘合，顶点、棱、面数保持不变。';break;}
  case 14:{const m=meshes[n];svg=meshSvg(m,state.view??.6,140)+text(360,291,names[n],18);status=countText(m);note=n===5?'独立构造的不规则网格，计数为 21、45、26；不是原书怪物外形的复制。':'可拖动图像改变观察角度。面是多边形，内部绘制不额外计入棱。';break;}
