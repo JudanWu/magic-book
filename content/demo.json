@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "id": "original-numbers",
+  "title": "大数与无穷",
+  "subtitle": "原创数学实验 · 《从一到无穷大》主题方向的阅读引擎演示",
+  "author": "魔法书贡献者",
+  "license": "CC-BY-4.0",
+  "source": {
+    "kind": "original",
+    "url": null,
+    "jurisdiction": "worldwide",
+    "note": "原创讲解；不是书籍第一章译文，不与原书段落建立虚假对应。"
+  },
+  "blocks": [
+    {
+      "id": "place",
+      "title": "数字的秘密，藏在位置里。",
+      "text": "8732 看似只有四个符号，却依次表示八个千、七个百、三个十和两个一。同样的数字，位置不同，代表的数量就不同。零让空缺的位置也能被准确保留。",
+      "prompt": "试着改变十的指数，观察一个数字怎样变成大数。",
+      "interaction": "power",
+      "sourceParagraphIds": [],
+      "translationStatus": "not-applicable"
+    },
+    {
+      "id": "chess",
+      "title": "一粒麦子，能填满整个世界吗？",
+      "text": "设想一张 64 格棋盘：第一格放一粒麦子，之后每一格都放前一格的两倍。开始时只有 1、2、4、8 粒；倍增不断累积，最后一格的数量会远超直觉。",
+      "prompt": "先猜一猜：最后一格与前 63 格的总和，谁更大？",
+      "interaction": "chess",
+      "sourceParagraphIds": [],
+      "translationStatus": "not-applicable"
+    },
+    {
+      "id": "hotel",
+      "title": "客满的旅馆，还能住进一个人。",
+      "text": "在有限的旅馆里，满员意味着没有空房。但设想房间编号为 1、2、3……，且每一间都有人住。让每位住客从 n 号房搬到 n+1 号房，1 号房就空出来了。",
+      "prompt": "把一位新客人安排进去，再尝试安排可数无穷多位新客人。",
+      "interaction": "hotel",
+      "sourceParagraphIds": [],
+      "translationStatus": "not-applicable"
+    },
+    {
+      "id": "rational",
+      "title": "分数也能排成一条队伍。",
+      "text": "把所有正分数按分子、分母的和从小到大排列，并跳过能约分的重复项。每一个正有理数都会在有限的某一步出现，所以正有理数虽然无穷多，依然可以逐个编号。",
+      "prompt": "沿对角线逐步访问分数，观察为什么 2/2 不需要再次入队。",
+      "interaction": "rational",
+      "sourceParagraphIds": [],
+      "translationStatus": "not-applicable"
+    }
+  ]
+}

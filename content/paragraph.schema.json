@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "魔法书逐段翻译记录",
+  "type": "object",
+  "required": ["chapterId", "paragraphId", "page", "english", "chinese", "translationStatus", "reviewStatus", "interactionBlockIds"],
+  "properties": {
+    "chapterId": {"type": "string", "minLength": 1},
+    "paragraphId": {"type": "string", "minLength": 1},
+    "page": {"type": "integer", "minimum": 1},
+    "english": {"type": "string", "minLength": 1},
+    "chinese": {"type": ["string", "null"]},
+    "translationStatus": {"enum": ["pending", "draft", "translated"]},
+    "reviewStatus": {"enum": ["pending", "reviewed"]},
+    "editorNotes": {"type": "array", "items": {"type": "string"}},
+    "interactionBlockIds": {"type": "array", "items": {"type": "string"}}
+  },
+  "allOf": [{
+    "if": {"properties": {"translationStatus": {"enum": ["draft", "translated"]}}},
+    "then": {"properties": {"chinese": {"type": "string", "minLength": 1}}}
+  }]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "magic-book",
+  "version": "0.2.0",
+  "private": true,
+  "description": "魔法书：让知识在纸上动起来的开源互动阅读引擎",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "start": "python3 -m http.server 4173 --bind 127.0.0.1",
+    "test": "node --test tests/*.test.js",
+    "validate": "node scripts/validate-content.js",
+    "build": "node scripts/build.js"
+  },
+  "engines": {"node": ">=22"}
+}

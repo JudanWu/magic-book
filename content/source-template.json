@@ -1,0 +1,18 @@
+{
+  "title": "原创英文格式示例（不是伽莫夫原文）",
+  "provenance": {
+    "edition": "original-example-v1",
+    "author": "Magic Book contributors",
+    "sourceUrl": null,
+    "license": "CC-BY-4.0",
+    "jurisdiction": "worldwide"
+  },
+  "paragraphs": [
+    {
+      "chapterId": "example-ch01",
+      "paragraphId": "example-ch01-p001",
+      "page": 1,
+      "english": "Place one grain on the first square. Double the number on each following square."
+    }
+  ]
+}
